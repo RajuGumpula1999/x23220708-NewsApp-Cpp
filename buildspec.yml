@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+    #   - ls -lrt
+    #   - pip install --upgrade pip
+    #   - pip install -r requirements.txt
+    #   - pip install pylint
+    #   - pylint --ignore=migrations,.ebextensions,__pycache__,static,staticfiles,templates,.gitignore,buidspec.yml,db.sqlite3 --generate-rcfile > .pylintrc
+    #   - sed -i 's/fail-under=10/fail-under=6/g'  .pylintrc
+    # pre_build:
+    commands:
+    - python --version
+  build:
+    commands:
+    # - pylint -rn --rcfile=.pylintrc *
+    #   - bandit -iii -r . --exclude=buildspec.yml,db.sqlite3,requirements.txt
+
+artifacts:
+  files:
+  - '**/*'

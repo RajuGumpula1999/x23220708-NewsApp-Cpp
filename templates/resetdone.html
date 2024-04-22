@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<style>
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+
+  @media screen and (max-width: 720px) {
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      font-size: xx-large;
+      padding: 0 26px 0 26px;
+    }
+  }
+</style>
+
+<div class="center mx-2">
+  <p>Please check your email inbox and follow the instruction to reset your password.</p>
+</div>
+{%endblock content%}

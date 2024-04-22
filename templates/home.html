@@ -1,0 +1,82 @@
+{% include 'base.html' %}
+
+{% block content %}
+<style>
+    .title {
+        font-size: 2.6rem;
+    }
+
+    @media screen and (max-width: 720px) {
+        .title {
+            font-size: 3.2rem;
+            text-align: center;
+            padding-right: 0.4rem;
+        }
+    }
+</style>
+<div class="container">
+
+    <section class="pt-5 mt-3">
+        <div class="row">
+            <div class="col-lg-12 col-md-8 mx-auto">
+                <h1 class="title fw-bold">Blogs & News</h1>
+                <p class="lead text-muted">Browse news and articles, find out the best article for you, Blogs & News is
+                    a plateform to provide you news & daily blogs in single place...</p>
+                <p class="d-grid gap-2 d-sm-flex">
+                    <a href="{% url 'dashboard' %}" class="btn btn-dark my-2">Create Blog + </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {% if blogs %}
+    <h3 class="display-7 text-muted mb-2">Recent Articles for you....</h3>
+    <div class="my-3 w-100 padd container-padd">
+        <div class="row">
+
+            {% for blog in blogs %}
+            <div class="col-md-3 mb-2">
+                <a href="{% url 'blogdetail' blog.slug %}" class="text-decoration-none text-dark">
+                    <div class="card shadow-lg" style="border-radius: 24px 24px">
+                        <img src="/media/{{blog.poster}}" alt="" class="card-img-top"
+                            style="border-radius: 24px 24px 0px 0px;height: 182px;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mt-2">{{blog.title|truncatechars:22}}</h5>
+                            <p class="card-text">{{blog.content|striptags|safe|truncatechars:60}}</p>
+                            <button class="btn btn-dark btn-sm">Read more</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endif %}
+
+    <h3 class="display-7 text-muted mb-2">Top stories for you....</h3>
+    <div class="my-3 w-100 padd container-padd">
+        <div class="row">
+
+            {% for title, desc, img, url in data %}
+            {% if desc %}
+            <div class="col-md-3 mb-4">
+                <a href="{{url}}" target="__blank" class="text-decoration-none text-dark">
+                    <div class="card shadow-lg" style="border-radius: 24px 24px">
+                        <img src="{% if img %}{{img}}{% else %}https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeDLUgPm6eqlc3xZzykaaMRKvUUlMVaaiUlA&usqp=CAU{% endif %}"
+                            alt="" class="card-img-top" style="border-radius: 24px 24px 0px 0px;height: 182px;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mt-2">{{title|truncatechars:22}}</h5>
+                            <p class="card-text">{{desc|striptags|safe|truncatechars:60}}</p>
+                            <button class="btn btn-dark btn-sm">Read more</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

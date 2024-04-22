@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<style>
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+
+    @media screen and (max-width: 720px) {
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-size: xx-large;
+            padding: 0 26px 0 26px;
+        }
+    }
+</style>
+
+<div class="center mx-2">
+    <p>Your password has been changed successfully. Please login by <a href="{% url 'login' %}"
+            class="text-dark">Clicking here</a></p>
+</div>
+{% endblock %}
